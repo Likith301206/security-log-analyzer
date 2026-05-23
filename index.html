@@ -80,6 +80,7 @@ input, select {
     border: none;
     background: rgba(255,255,255,0.08);
     color: white;
+    font-size: 15px;
 }
 
 /* BUTTONS */
@@ -93,11 +94,12 @@ button {
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
+    font-size: 15px;
 }
 
 button:hover {
     box-shadow: 0 0 15px #3a81aa;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 /* HEADINGS */
@@ -126,6 +128,48 @@ h2 {
 .data-box::-webkit-scrollbar-thumb {
     background: #22bad1;
     border-radius: 10px;
+}
+
+/* MOBILE RESPONSIVE */
+@media screen and (max-width: 768px) {
+
+    .wrapper {
+        padding: 10px;
+    }
+
+    .dashboard {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .card {
+        width: 90%;
+        min-width: unset;
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    input,
+    select,
+    button {
+        width: 100%;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .data-box {
+        font-size: 13px;
+    }
+
 }
 
 </style>
