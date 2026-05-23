@@ -284,7 +284,7 @@ function addDevice() {
         location.value + "," +
         status.value;
 
-    fetch("http://127.0.0.1:5000/addDevice", {
+    fetch("/addDevice", {
 
         method: "POST",
         body: data
@@ -297,10 +297,8 @@ function addDevice() {
 
         alert(data);
 
-        // OPEN DEVICE PAGE
         openDevicesPage();
 
-        // LOAD DEVICES
         loadDevices();
 
     })
@@ -315,7 +313,7 @@ function addLog() {
         device_id.value + "," +
         activity.value;
 
-    fetch("http://127.0.0.1:5000/addLog", {
+    fetch("/addLog", {
 
         method: "POST",
         body: data
@@ -328,10 +326,8 @@ function addLog() {
 
         alert(data);
 
-        // OPEN THREAT PAGE
         openThreatsPage();
 
-        // LOAD THREATS
         loadThreats();
 
     })
