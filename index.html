@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Security Log Analyzer</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #020617, #0a0f1c);
+    color: white;
+}
+
+/* CENTER */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px;
+}
+
+/* DASHBOARD */
+.dashboard {
+    width: 90%;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 40px rgba(175, 18, 18, 0.858);
+}
+
+/* TITLE */
+.title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #f2ecec;
+    text-shadow: 0 0 10px #4785a0;
+}
+
+/* GRID */
+.grid {
+    display: flex;
+    gap: 30px;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+/* CARDS */
+.card {
+    width: 42%;
+    min-width: 300px;
+    padding: 25px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(162, 24, 146, 0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #05090b;
+}
+
+/* INPUTS */
+input, select {
+    width: 90%;
+    padding: 11px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.08);
+    color: white;
+}
+
+/* BUTTONS */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #d2d214, #5e67129d);
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    box-shadow: 0 0 15px #3a81aa;
+    transform: scale(1.05);
+}
+
+/* HEADINGS */
+h2 {
+    text-align: center;
+    color: #22bad1;
+}
+
+/* DATA BOX */
+.data-box {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.05);
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* SCROLLBAR */
+.data-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.data-box::-webkit-scrollbar-thumb {
+    background: #22bad1;
+    border-radius: 10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="dashboard">
+
+<div class="title">
+💻 SECURITY LOG ANALYSER
+</div>
+
+<!-- HOME PAGE -->
+
+<div id="homePage">
+
+<div class="grid">
+
+    <!-- ADD DEVICE -->
+
+    <div class="card">
+
+        <h2>Add Device</h2>
+
+        <input id="name" placeholder="Device Name">
+
+        <input id="type" placeholder="Device Type">
+
+        <input id="location" placeholder="Location">
+
+        <select id="status">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select>
+
+        <button onclick="addDevice()">
+            Add Device
+        </button>
+
+    </div>
+
+    <!-- ADD LOG -->
+
+    <div class="card">
+
+        <h2>Add Log</h2>
+
+        <input id="device_id" placeholder="Device ID">
+
+        <input id="activity" placeholder="Activity">
+
+        <button onclick="addLog()">
+            Add Log
+        </button>
+
+    </div>
+
+</div>
+
+<div class="grid">
+
+    <!-- VIEW DEVICES -->
+
+    <div class="card">
+
+        <h2>View Devices</h2>
+
+        <button onclick="openDevicesPage()">
+            Open Devices Page
+        </button>
+
+    </div>
+
+    <!-- VIEW THREATS -->
+
+    <div class="card">
+
+        <h2>View Threats</h2>
+
+        <button onclick="openThreatsPage()">
+            Open Threats Page
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- DEVICES PAGE -->
+
+<div id="devicesPage" style="display:none;">
+
+<div class="card">
+
+<h2>Registered Devices</h2>
+
+<button onclick="loadDevices()">
+Load Devices
+</button>
+
+<button onclick="goHome()">
+Back
+</button>
+
+<div id="deviceData" class="data-box"></div>
+
+</div>
+
+</div>
+
+<!-- THREATS PAGE -->
+
+<div id="threatsPage" style="display:none;">
+
+<div class="card">
+
+<h2>Threat Detection</h2>
+
+<button onclick="loadThreats()">
+Load Threats
+</button>
+
+<button onclick="goHome()">
+Back
+</button>
+
+<div id="threatData" class="data-box"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+// ADD DEVICE
+function addDevice() {
+
+    if(name.value === "" || type.value === "" || location.value === "") {
+
+        alert("Please fill all fields!");
+        return;
+    }
+
+    const data =
+        name.value + "," +
+        type.value + "," +
+        location.value + "," +
+        status.value;
+
+    fetch("http://127.0.0.1:5000/addDevice", {
+
+        method: "POST",
+        body: data
+
+    })
+
+    .then(res => res.text())
+
+    .then(data => {
+
+        alert(data);
+
+        // OPEN DEVICE PAGE
+        openDevicesPage();
+
+        // LOAD DEVICES
+        loadDevices();
+
+    })
+
+    .catch(err => alert("ERROR: " + err));
+}
+
+// ADD LOG
+function addLog() {
+
+    const data =
+        device_id.value + "," +
+        activity.value;
+
+    fetch("http://127.0.0.1:5000/addLog", {
+
+        method: "POST",
+        body: data
+
+    })
+
+    .then(res => res.text())
+
+    .then(data => {
+
+        alert(data);
+
+        // OPEN THREAT PAGE
+        openThreatsPage();
+
+        // LOAD THREATS
+        loadThreats();
+
+    })
+
+    .catch(err => alert("ERROR: " + err));
+}
+
+// OPEN DEVICES PAGE
+function openDevicesPage(){
+
+    document.getElementById("homePage").style.display = "none";
+    document.getElementById("devicesPage").style.display = "block";
+    document.getElementById("threatsPage").style.display = "none";
+}
+
+// OPEN THREATS PAGE
+function openThreatsPage(){
+
+    document.getElementById("homePage").style.display = "none";
+    document.getElementById("devicesPage").style.display = "none";
+    document.getElementById("threatsPage").style.display = "block";
+}
+
+// GO HOME
+function goHome(){
+
+    document.getElementById("homePage").style.display = "block";
+    document.getElementById("devicesPage").style.display = "none";
+    document.getElementById("threatsPage").style.display = "none";
+}
+
+// LOAD DEVICES
+function loadDevices() {
+
+    fetch('/getDevices')
+
+    .then(res => res.json())
+
+    .then(data => {
+
+        let output = "";
+
+        data.forEach(device => {
+
+            output += `
+                <p style="
+                    background: rgba(255,255,255,0.05);
+                    padding:10px;
+                    border-radius:8px;
+                    margin-bottom:10px;
+                ">
+                <b>ID:</b> ${device.id}<br>
+                <b>Name:</b> ${device.name}<br>
+                <b>Type:</b> ${device.type}<br>
+                <b>Location:</b> ${device.location}<br>
+                <b>Status:</b> ${device.status}
+                </p>
+            `;
+        });
+
+        document.getElementById("deviceData").innerHTML = output;
+    });
+}
+
+// LOAD THREATS
+function loadThreats() {
+
+    fetch('/getThreats')
+
+    .then(res => res.json())
+
+    .then(data => {
+
+        let output = "";
+
+        data.forEach(threat => {
+
+            let color = "#22c55e";
+
+            if(threat.severity == "Medium") {
+                color = "yellow";
+            }
+
+            else if(threat.severity == "High") {
+                color = "orange";
+            }
+
+            else if(threat.severity == "Critical") {
+                color = "red";
+            }
+
+            output += `
+                <p style="
+                    color:${color};
+                    background:rgba(255,255,255,0.05);
+                    padding:10px;
+                    border-radius:8px;
+                    margin-bottom:10px;
+                ">
+                <b>Device:</b> ${threat.device_id}<br>
+                <b>Activity:</b> ${threat.activity}<br>
+                <b>Severity:</b> ${threat.severity}
+                </p>
+            `;
+        });
+
+        document.getElementById("threatData").innerHTML = output;
+    });
+}
+
+</script>
+
+</body>
+</html>
