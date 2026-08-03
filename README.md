@@ -137,30 +137,33 @@ http://127.0.0.1:5000
 
 # 📸 Project Screenshots
 
-> **Dashboard**
+## 🏠 Dashboard
 
-_Add a screenshot of your main dashboard here._
-
----
-
-> **Device Management**
-
-_Add a screenshot showing the Add/View Devices page._
+![Dashboard](assets/images/dashboard.png)
 
 ---
 
-> **Threat Monitoring**
+## ➕ Add Device
 
-_Add a screenshot of the detected threats page._
-
----
-
-> **Activity Logs**
-
-_Add a screenshot of the security logs page._
+![Add Device](assets/images/add-device.png)
 
 ---
 
+## 📝 Add Security Log
+
+![Add Log](assets/images/add-log.png)
+
+---
+
+## 📱 Device Management
+
+![View Devices](assets/images/view-devices.png)
+
+---
+
+## 🚨 Threat Monitoring
+
+![View Threats](assets/images/view-threats.png)
 # 🚀 Future Enhancements
 
 The following features can be implemented in future versions:
