@@ -173,7 +173,7 @@ Computer Science Engineering Student
 
 ### Connect with me
 
-- 💼 LinkedIn: https://www.linkedin.com/in/likith-s-798b66383/
+- 💼 LinkedIn: https://www.linkedin.com/in/likith30/
 - 💻 GitHub: https://github.com/Likith301206
 
 ---
