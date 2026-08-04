@@ -137,45 +137,44 @@ http://127.0.0.1:5000
 
 # 🚀 Future Enhancements
 
-The following features can be implemented in future versions:
+The following improvements are planned for future versions of SmartShield:
 
-- 🤖 AI-powered threat detection using Machine Learning
-- 🔐 User Authentication & Role-Based Access
-- ☁️ Cloud Database Integration
-- 📧 Email Alerts for Critical Threats
-- 📊 Interactive Analytics Dashboard
-- 📱 Mobile-Friendly Responsive Interface
-- 🌐 Live IoT Device API Integration
-
----
+- 🤖 AI-powered anomaly detection using Machine Learning
+- 🔐 User authentication and role-based access control
+- ☁️ Cloud database integration
+- 📧 Email and SMS alerts for critical threats
+- 📊 Interactive analytics dashboard with graphs
+- 📱 Fully responsive mobile interface
+- 🌐 Real-time IoT device integration
+- 📈 Threat trend analysis and reporting
 
 # 📚 Learning Outcomes
 
-This project helped me gain practical experience in:
+Through this project, I gained practical experience in:
 
-- Python Programming
-- Flask Web Framework
-- SQLite Database Management
-- CRUD Operations
-- Backend Development
-- Frontend Development
-- Database Design
-- Git & GitHub
-- Problem Solving
+- Developing full-stack web applications using Flask
+- Designing and managing relational databases with SQLite
+- Implementing CRUD operations for real-world scenarios
+- Building RESTful routes and backend logic
+- Creating responsive user interfaces with HTML and CSS
+- Applying rule-based threat classification
+- Using Git and GitHub for version control
 
 ---
 
 # 👨‍💻 Author
 
-## Likith S
+**Likith S**
 
 Computer Science Engineering Student
 
-### Connect with me
+📧 Email: likiths301206@gmail.com
 
-- 💼 LinkedIn: https://www.linkedin.com/in/likith30/
-- 💻 GitHub: https://github.com/Likith301206
+💼 LinkedIn: https://www.linkedin.com/in/likith30
 
+💻 GitHub: https://github.com/Likith301206
+
+⭐ Passionate about Software Development, AI, and Full-Stack Web Development.
 ---
 
 # ⭐ If you found this project useful
